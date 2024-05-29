@@ -1,0 +1,66 @@
+
+###  Chainlens Setup Guide
+## Project Overview
+Chainlens is a blockchain explorer that allows you to visualize and interact with blockchain data. This guide will help you set up Chainlens using Docker and Docker-Compose.
+
+## Prerequisites
+Ensure you have Docker and Docker-Compose installed on your system. You can check if they are installed using the following commands:
+
+## bash
+docker --version
+docker-compose --version
+
+If these commands do not return version numbers, you will need to install Docker and Docker-Compose. Refer to the Docker installation guide and the Docker-Compose installation guide for detailed instructions.
+
+###  Setup Instructions
+## Clone the Repository
+
+git clone https://github.com/web3labs/chainlens-free
+Navigate to the Docker-Compose Directory
+
+## bash
+cd chainlens-free
+cd docker-compose
+
+## Log in to Docker
+Log in to your Docker account:
+
+docker login
+
+## Update the docker-compose.yml File
+
+If the NODE_ENDPOINT is not set up, you can directly set it up in the docker-compose.yml file. For example:
+
+NODE_ENDPOINT=http://127.0.0.1:8545
+
+## Pull the Docker Images
+Pull the necessary Docker images:
+
+docker-compose pull
+
+## Start the Docker Containers
+
+To start the Docker containers with the default configuration:
+
+NODE_ENDPOINT=http://127.0.0.1:8545
+docker-compose up
+By default, the explorer runs on port 80. If you wish to use a custom port (e.g., 26000), you can start the containers as follows:
+
+NODE_ENDPOINT=http://localhost:8585 PORT=26000
+docker-compose up -d
+
+## Special Instructions for MacOS and Windows
+Due to limitations around the Docker network stack on MacOS, you need to modify the docker-compose.yml file. Specifically, remove the version number and change the NODE_ENDPOINT:
+
+NODE_ENDPOINT=http://host.docker.internal:8545
+Then, start the Docker containers:
+
+docker-compose up
+
+## Stopping the Containers
+To stop the running Docker containers, use the following command:
+
+docker-compose down
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
